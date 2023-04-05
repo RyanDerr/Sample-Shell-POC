@@ -28,7 +28,9 @@ func main() {
 func executeCommand(commandInput string) error {
 	commandInput = strings.TrimSuffix(commandInput, "\n")
 
-	cmd := exec.Command(commandInput)
+	args := strings.Split(commandInput, " ")
+
+	cmd := exec.Command(args[0], args[1:]...)
 
 	cmd.Stderr = os.Stderr
 	cmd.Stdout = os.Stdout
