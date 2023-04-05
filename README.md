@@ -9,6 +9,7 @@ Sample-Shell-POC is a project aimed at testing the creation of shells across mul
 To run this project, you will need to have the following installed:
 
 - Golang
+   - In Ubuntu based distros you can install go via the command `sudo apt install golang`
 - C Compiler
 
 ### Installation
@@ -22,7 +23,7 @@ $ git clone https://github.com/RyanDerr/Sample-Shell-POC.git
 2. Change directory to the cloned repository:
 
 ```
-$ cd Sample-Shell-POC\Golang
+$ cd Sample-Shell-POC/Golang
 ```
 
 

@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"strings"
@@ -11,8 +12,7 @@ import (
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	for {
-		//Print a '>' to the console before entering commands
-		fmt.Print("> ")
+		showWorkingDir()
 		//Read Input From Keyboard
 		input, err := reader.ReadString('\n')
 		if err != nil {
@@ -23,6 +23,17 @@ func main() {
 			fmt.Fprintln(os.Stdout, err)
 		}
 	}
+}
+
+func showWorkingDir() {
+	//Get the users current directory
+	workingDir, err := os.Getwd()
+	//Print error to console if and error is returned
+	if err != nil {
+		log.Println(err)
+	}
+	//Print a '>' to the console before entering commands
+	fmt.Print(workingDir + "> ")
 }
 
 func executeCommand(commandInput string) error {
