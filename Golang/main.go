@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -36,13 +37,24 @@ func showWorkingDir() {
 	fmt.Print(workingDir + "> ")
 }
 
+var ErrNoPath = errors.New("Path Required To Change Directory")
+
 func executeCommand(commandInput string) error {
+
 	commandInput = strings.TrimSuffix(commandInput, "\n")
 
 	args := strings.Split(commandInput, " ")
+    switch args[0] {
+    case "cd":
+        if len(args) < 2 {
+			return ErrNoPath
+		}
+		return os.Chdir(args[1])
+	case "exit":
+		os.Exit(0)
+    }
 
 	cmd := exec.Command(args[0], args[1:]...)
-
 	cmd.Stderr = os.Stderr
 	cmd.Stdout = os.Stdout
 
